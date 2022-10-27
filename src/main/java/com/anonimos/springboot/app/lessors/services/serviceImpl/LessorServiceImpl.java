@@ -28,22 +28,16 @@ public class LessorServiceImpl implements LessorService {
         return lessorRepository.findById(id);
     }
 
-    @Transactional
     @Override
-    public Lessor save(Lessor lessor) {
-        return null;
+    @Transactional
+    public Lessor create(Lessor newLessor) {
+        return lessorRepository.save(newLessor);
     }
 
     @Transactional
     @Override
     public void delete(Long id) {
         lessorRepository.deleteById(id);
-    }
-
-    @Override
-    @Transactional
-    public void create(Lessor newLessor) {
-        lessorRepository.save(newLessor);
     }
 
     @Override

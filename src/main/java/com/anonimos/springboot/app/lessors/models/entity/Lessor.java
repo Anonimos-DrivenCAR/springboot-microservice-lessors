@@ -1,19 +1,15 @@
 package com.anonimos.springboot.app.lessors.models.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 
-@Getter @Setter
-@NoArgsConstructor @AllArgsConstructor
 @Entity
 @Table(name = "lessors")
+@Getter @Setter
+@With
+@NoArgsConstructor @AllArgsConstructor
 public class Lessor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,15 +17,21 @@ public class Lessor {
     private Long id;
 
     @Column(name = "name")
+    @NotBlank
     private String name;
 
-    @Email
     @Column(name = "email",unique = true)
+    @Email
+    @NotBlank
     private String email;
 
+    @Column(name = "user_name")
+    @NotBlank
+    @Size(min = 2, max = 20)
+    private String username;
+
     @Column(name = "password")
+    @NotBlank
     private String password;
-
-
 
 }

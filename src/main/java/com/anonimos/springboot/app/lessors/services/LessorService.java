@@ -8,8 +8,8 @@ import java.util.Optional;
 public interface LessorService {
     List<Lessor> findAll();
     Optional<Lessor> findLessorById(Long id);
-    Lessor save(Lessor lessor);
+
     void delete(Long id);
-    void create(Lessor newLessor);
+    Lessor create(Lessor newLessor);
     Lessor update(Long id, Lessor lessor);
 }
