@@ -91,6 +91,13 @@ public class LessorServiceImpl implements LessorService {
         }
         return Optional.empty();
     }
+
+    @Override
+    @Transactional
+    public void deleteLessorCarById(Long id) {
+        lessorRepository.deleteLessorCarByID(id);
+    }
+
     @Override
     @Transactional
     public Optional<Car> assignCar(Car car, Long lessorId) {

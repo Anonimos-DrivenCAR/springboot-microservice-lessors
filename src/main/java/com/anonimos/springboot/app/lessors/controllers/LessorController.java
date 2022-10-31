@@ -112,7 +112,7 @@ public class LessorController {
         return ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping("/delete-car/{lessorId}")
+    @DeleteMapping("/unAssign-car/{lessorId}")
     public ResponseEntity<?> deleteCar(@RequestBody Car car,  @PathVariable Long lessorId){
         Optional<Car> o ;
         try {
@@ -126,6 +126,13 @@ public class LessorController {
         }
         return ResponseEntity.notFound().build();
     }
+
+    @DeleteMapping("/delete_car/{id}")
+    public ResponseEntity<?> deleteLessorCar(@PathVariable Long id){
+        service.deleteLessorCarById(id);
+        return ResponseEntity.noContent().build();
+    }
+
 
     /**validation*/
     private static ResponseEntity<Map<String, String>> validate(BindingResult result) {

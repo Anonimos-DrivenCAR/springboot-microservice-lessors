@@ -19,6 +19,8 @@ public interface LessorService {
 
 
     /**Microservices-iteration*/
+
+    void deleteLessorCarById(Long id);
     Optional<Lessor> findByIdWithCars(Long id);
     Optional<Car> assignCar(Car car,Long lessorId);
     Optional<Car> createCar(Car car,Long LessorId);
