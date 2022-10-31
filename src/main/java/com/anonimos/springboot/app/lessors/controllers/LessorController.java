@@ -24,9 +24,9 @@ public class LessorController {
     }
 
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getById(@PathVariable Long id){
-       Optional<Lessor> o = service.findLessorById(id);
+    @GetMapping("/{id}") //getByID -> Details
+    public ResponseEntity<?> detail(@PathVariable Long id){
+       Optional<Lessor> o = service.findByIdWithCars(id);     //service.findLessorById(id);
        if(o.isPresent()){
            return ResponseEntity.ok(o.get());
        }
@@ -78,7 +78,8 @@ public class LessorController {
         return ResponseEntity.notFound().build();
     }
 
-    //Microservices Iteration
+    /**Microservices Iteration*/
+
     @PutMapping( "/assign-car/{lessorId}")
     public ResponseEntity<?> assignCar(@RequestBody Car car,  @PathVariable Long lessorId){
        Optional<Car> o ;
@@ -126,7 +127,7 @@ public class LessorController {
         return ResponseEntity.notFound().build();
     }
 
-    //validation
+    /**validation*/
     private static ResponseEntity<Map<String, String>> validate(BindingResult result) {
         Map<String, String> errors = new HashMap<>();
         result.getFieldErrors().forEach(err ->{

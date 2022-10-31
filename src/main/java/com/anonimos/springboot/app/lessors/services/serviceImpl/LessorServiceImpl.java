@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.validation.constraints.Email;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class LessorServiceImpl implements LessorService {
@@ -73,7 +74,23 @@ public class LessorServiceImpl implements LessorService {
                 ).get();
     }
 
-
+/**Microservices-iterations*/
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<Lessor> findByIdWithCars(Long id) {
+        Optional<Lessor> o = lessorRepository.findById(id);
+        if(o.isPresent()){
+            Lessor lessor = o.get();
+            if(!lessor.getLessorCars().isEmpty()){
+                List<Long> ids = lessor.getLessorCars().stream().map(
+                        lessorCar -> lessorCar.getCarId()).collect(Collectors.toList());
+                List<Car> cars = clientRest.getCarsByLessor(ids);
+                lessor.setCars(cars);
+            }
+            return Optional.of(lessor);
+        }
+        return Optional.empty();
+    }
     @Override
     @Transactional
     public Optional<Car> assignCar(Car car, Long lessorId) {

@@ -9,6 +9,8 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @FeignClient(name = "msvc-cars", url = "localhost:8001")
 
 public interface CarClientRest {
@@ -17,5 +19,6 @@ public interface CarClientRest {
     Car getById(@PathVariable Long id);
     @PostMapping(value = "/")
     Car create(@RequestBody Car car);
-
+    @GetMapping(value="/cars-by-lessor")
+    List<Car>  getCarsByLessor(@RequestParam Iterable<Long> ids);
 }
