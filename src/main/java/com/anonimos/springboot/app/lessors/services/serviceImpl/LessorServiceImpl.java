@@ -101,7 +101,9 @@ public class LessorServiceImpl implements LessorService {
     @Override
     @Transactional
     public Optional<Car> assignCar(Car car, Long lessorId) {
+
         Optional<Lessor> o = lessorRepository.findById(lessorId);
+
         if(o.isPresent()){
             Car carMsvc = clientRest.getById(car.getIdCar());
             Lessor lessor= o.get();
