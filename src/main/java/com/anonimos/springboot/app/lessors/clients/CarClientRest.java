@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name = "msvc-cars", url = "localhost:8001")
+@FeignClient(name = "msvc-cars", url = "msvc-cars:8001")
 public interface CarClientRest {
 
     @GetMapping("/id/{id}")
