@@ -18,6 +18,7 @@ public class LessorController {
     @Autowired
     LessorService service;
 
+
     @GetMapping("/")
     public ResponseEntity<List<Lessor>> getAll() {
         return ResponseEntity.ok(service.findAll());
