@@ -11,6 +11,7 @@ public interface LessorRepository extends CrudRepository<Lessor,Long> {
 
     /**Just to know the different ways to do the same thing*/
     Optional<Lessor> findByEmail(String email);
+
     @Query("SELECT l FROM Lessor l WHERE l.email =?1 ")
     Optional<Lessor> getByEmail(String email);
     boolean existsByEmail(String email);
