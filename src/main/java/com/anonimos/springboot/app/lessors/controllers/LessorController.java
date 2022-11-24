@@ -14,13 +14,14 @@ import javax.validation.Valid;
 import java.util.*;
 
 @RestController
+@RequestMapping(value = "/api/lessor")
 public class LessorController {
     @Autowired
     LessorService service;
 
-    @GetMapping("/")
-    public ResponseEntity<List<Lessor>> getAll() {
-        return ResponseEntity.ok(service.findAll());
+    @GetMapping("/all")
+    public Map<String,List<Lessor>> getAll() {
+        return Collections.singletonMap("Lessors",service.findAll());//ResponseEntity.ok(service.findAll());
     }
 
 

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name = "msvc-cars", url = "${msvc.cars.url}")
+@FeignClient(name = "msvc-cars", url = "ec2-184-72-157-182.compute-1.amazonaws.com:8001/api/car")
 public interface CarClientRest {
 
     @GetMapping("/{id}")
